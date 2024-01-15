@@ -1,10 +1,13 @@
+
 import 'dart:ui';
 
 import 'package:spotify_app/models/Music.dart';
 import 'package:spotify_app/models/category.dart';
 import 'package:flutter/material.dart';
+import 'package:spotify_app/pages/settings.dart';
 import 'package:spotify_app/services/Music_operation.dart';
 import 'package:spotify_app/services/category_operation.dart';
+import 'package:spotify_app/pages/settings.dart';
 
 class Home extends StatelessWidget {
   Function _miniPlayer;
@@ -44,13 +47,15 @@ class Home extends StatelessWidget {
     return categories;
   }
 
-  creatAppbar(String message) {
+  creatAppbar(String message, BuildContext context) {
     return AppBar(
       title: Text(
         message,
         style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
       ),
-      actions: [IconButton(onPressed: () {}, icon: Icon(Icons.settings))],
+      actions: [IconButton(onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>settings()));
+      }, icon: Icon(Icons.settings))],
       backgroundColor: Colors.transparent,
       elevation: 0,
     );
@@ -134,7 +139,7 @@ class Home extends StatelessWidget {
         child: ListView(children: [
           Column(
             children: [
-              creatAppbar("Good morning"),
+              creatAppbar("Good morning",context),
               SizedBox(
                 height: 0.001,
               ),
